@@ -42,7 +42,7 @@ export const verifyEmail = async (req, res) => {
       const message = "Verification failed or link is invalid";
       return res.redirect(`/users/verified?status=error&message=${message}`);
     }
-    console.log(userId);
+    // console.log(userId);
     // Update user's verification status to true
     await Users.findOneAndUpdate({ _id: userId }, { verified: true });
 
