@@ -1,0 +1,88 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  font-size: 30px;
+}
+.card {
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  width: 40%;
+}
+.icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+.success {
+  color: green;
+}
+.error {
+  color: red;
+}
+.hideBtn {
+  display: none;
+}
+.showBtn {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgba(1, 116, 210, 0.971);
+  color: white;
+  margin-top: 10px;
+}
+#statusMessage {
+  display: grid;
+  align-items: center;
+  margin: 1.5rem;
+}
+a {
+  font-size: large;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .card {
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+    width: 90%;
+    margin: 10px;
+  }
+  body {
+    font-size: larger;
+  }
+  .icon {
+    font-size: 44px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  body {
+    font-size: 31px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}

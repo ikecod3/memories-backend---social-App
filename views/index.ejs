@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <!-- <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: rgba(0, 0, 0, 0.2);
+        font-size: 30px;
+      }
+
+      .card {
+        border-radius: 10px;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        width: 47%;
+      }
+      .icon {
+        font-size: 64px;
+        margin-bottom: 20px;
+      }
+      .success {
+        color: green;
+      }
+      .error {
+        color: red;
+      }
+      .hideBtn {
+        display: none;
+      }
+      .showBtn {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: rgba(1, 116, 210, 0.971);
+        color: white;
+        margin-top: 10px;
+      }
+      #statusMessage {
+        display: grid;
+        align-items: center;
+        margin: 1.5rem;
+      }
+      a {
+        font-size: medium;
+      }
+    </style> -->
+    <!-- Custom css sheet -->
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div id="card" class="card">
+      <div class="icon">
+        <% if (status == "success") { %>
+        <span id="statusIcon" class="staI"> ✔️</span>
+        <% } else if (status == "error") { %>
+        <span id="statusIcon" class=""> ❌</span>
+        <% } else { %>
+        <span id="statusIcon" class=""> </span>
+        <% } %>
+      </div>
+
+      <!-- update user password form -->
+      <% if (type == "reset") { %>
+      <p style="text-align: center; margin: 0 5px; font-weight: bold">
+        Password Reset
+      </p>
+      <form
+        action="/users/reset-password"
+        method="post"
+        style="
+          display: flex;
+          gap: 1.5rem;
+          justify-content: center;
+          width: 100%;
+          flex-direction: column;
+        "
+      >
+        <input
+          type="text"
+          name="userId"
+          value="<%= userId %>"
+          style="display: none"
+        />
+        <input
+          style="padding: 16px; border-radius: 5px"
+          type="text"
+          name="password1"
+          id="password1"
+          autocomplete="off"
+          placeholder="New Password"
+          pattern=".{6,}"
+          title="Password must be at least 6 characters"
+          required
+        />
+        <input
+          style="padding: 16px; border-radius: 5px"
+          type="text"
+          name="password2"
+          id="password2"
+          autocomplete="off"
+          placeholder="Confirm password"
+          pattern=".{6,}"
+          title="Password must be at least 6 characters"
+          required
+        />
+        <button
+          type="submit"
+          style="
+            border-radius: 5px;
+            font-size: large;
+            padding: 12px;
+            background-color: royalblue;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+          "
+        >
+          Change Password
+        </button>
+      </form>
+      <% } %>
+
+      <div id="statusMessage" class="<%= status %>"><%= message %></div>
+
+      <% if (status === "success") { %>
+      <a href="http://localhost:3000/login" id="btn">Login</a>
+      <% } else if (status === "error") { %>
+      <a href="http://localhost:3000/register" id="btn">Return to hompage</a>
+      <% } else { %>
+      <a href="http://localhost:3000/register" id="btn">Return to hompage</a>
+      <% } %>
+    </div>
+  </body>
+</html>
