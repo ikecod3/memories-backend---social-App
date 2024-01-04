@@ -37,7 +37,7 @@ app.use(router);
 app.use(errorMiddleware);
 
 app.get("/", (req, res) => {
-  res.send(`<h1>Welcome to Memories (Social App) Backend</h1>`);
+  res.send(`<h1>Welcome to Memories (Social App) Backend Home Page</h1>`);
 });
 
 app.listen(process.env.PORT || PORT, () =>
