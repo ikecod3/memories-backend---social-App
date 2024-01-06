@@ -237,22 +237,19 @@ export const updateUser = async (req, res, next) => {
     res.status(404).json({ message: error.message });
   }
 };
-
+// send friend request
 export const friendRequest = async (req, res, next) => {
   try {
     const { userId } = req.body.user;
 
     // requestTo is the Id of the person we send a request to
     const { requestTo } = req.body;
-    // console.log("requestTo", requestTo);
-    // console.log("userId", userId);
 
     // check if friend request already exist  from either side
     const requestExist = await FriendRequest.findOne({
       requestFrom: userId,
       requestTo,
     });
-    // console.log("requestExist", requestExist);
 
     if (requestExist) {
       next("Friend Request already sent.");
@@ -264,7 +261,6 @@ export const friendRequest = async (req, res, next) => {
       requestFrom: requestTo,
       requestTo: userId,
     });
-    console.log("account exist", accountExist);
 
     if (accountExist) {
       next("Friend Request already sent.");
@@ -318,20 +314,17 @@ export const getFriendRequest = async (req, res, next) => {
 export const acceptRequest = async (req, res, next) => {
   try {
     const id = req.body.user.userId;
-    // console.log("my id", id);
+
     // grab request details from request body -- rid is requestId
     const { rid, status } = req.body;
-    // console.log("request id", rid);
-
     const requestExist = await FriendRequest.findById({ _id: rid });
-    // console.log("Yes?", requestExist);
 
     if (!requestExist) {
       next("No Friend Request Found. Kindly Send a Friend Request");
       return;
     }
 
-    // Check if the request has already been accepted. This ensures thatt there is no duplicate in user's friends list
+    // Check if the request has already been accepted. This ensures that there is no duplicate in user's friends list
     if (requestExist.requestStatus === "Accepted") {
       next("Friend Request has already been accepted.");
       return;
@@ -349,16 +342,15 @@ export const acceptRequest = async (req, res, next) => {
     if (status === "Accepted") {
       // search user by id
       const user = await Users.findById(id);
-      //   console.log("id", id);
-      // add reqeustTo to user friend list
-      user.friends.push(newRes?.requestTo);
+      // add requestTo to user friend list
+      user.friends.push(newRes?.requestFrom);
       // save the document
       await user.save();
       // we also want to  add user to the friend friends list
       // search friend by Id
-      const friend = await Users.findById(newRes?.requestTo);
+      const friend = await Users.findById(newRes?.requestFrom);
       // push user to friend friends list
-      friend.friends.push(newRes?.requestFrom);
+      friend.friends.push(newRes?.requestTo);
       // save the document
       await friend.save();
     }
@@ -382,6 +374,7 @@ export const profileViews = async (req, res, next) => {
     // grab user id and viewed profile
     const { userId } = req.body.user;
 
+    // grab the second user from request Id
     const { id } = req.body;
 
     const user = await Users.findById(id);
