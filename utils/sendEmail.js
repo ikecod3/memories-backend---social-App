@@ -8,7 +8,6 @@ import PasswordReset from "../models/passwordReset.js";
 dotenv.config();
 
 const { AUTH_EMAIL, AUTH_PASSWORD, APP_URL } = process.env;
-console.log(APP_URL);
 
 const mailTransporter = nodemailer.createTransport({
   service: "Yahoo", // email service provider
