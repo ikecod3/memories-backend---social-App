@@ -65,7 +65,7 @@ export const login = async (req, res, next) => {
     // check if the user is verified
     if (!user?.verified) {
       next(
-        "User email is not verified. Check your email account and verify your email"
+        "Email is not verified. Check your email inbox and verify your email"
       );
       return;
     }

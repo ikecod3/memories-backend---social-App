@@ -10,7 +10,7 @@ const errorMiddleware = (err, req, res, next) => {
   if (err?.name === "Validation Error") {
     defaultError.statusCode = 404;
 
-    defaultError.message = Object.values(err, errors)
+    defaultError.message = Object.values(err.errors)
       .map((el) => el.message)
       .join(",");
   }
