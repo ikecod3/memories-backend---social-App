@@ -5,14 +5,17 @@ import { sendVerificationEmail } from "../utils/sendEmail.js";
 export const register = async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
 
-  //   validate fields
+  //   validate fields to ensure they are not empty
   if (!(firstName || lastName || email || password)) {
     next("Provide Required Fields!");
     return;
   }
 
+  // proceed with the below try and catch if they are not empty
   try {
+    // find the email in the user colection
     const userExist = await Users.findOne({ email });
+    // if found - stop processing the registration data
     if (userExist) {
       next("Email Address already exits");
       return;
@@ -38,7 +41,7 @@ export const login = async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
-    // validation
+    // validation to ensure the login credentials is not empty
     if (!email || !password) {
       next("Please provide valid user credentials");
       return;

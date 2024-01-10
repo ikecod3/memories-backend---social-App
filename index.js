@@ -25,17 +25,23 @@ app.use(express.static(path.join(__dirname, "./public")));
 
 const PORT = process.env.PORT || 8800;
 connecToDatabase(); // database_connection
-
+// setup helmet middleware to help secure Express apps by setting HTTP response headers.
 app.use(helmet());
+//enables a cross-orgin resource sharing to allow the frontend communicate with backend seamlessly
 app.use(cors());
+
+//settign up an express json middleware to enable parsing of incoming requests with JSON payloads
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
+//HTTP request logger middleware fro node.js
 app.use(morgan("dev"));
 app.use(router);
 
+// defined an error middleware to ensure uniformity in error messages across various functions
 app.use(errorMiddleware);
 
+// dispaly this if the server is successfully hosted on cloud
 app.get("/", (req, res) => {
   res.send(`<h1>Welcome to Memories (Social App) Backend Home Page</h1>`);
 });
