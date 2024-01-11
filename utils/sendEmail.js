@@ -10,7 +10,7 @@ dotenv.config();
 const { AUTH_EMAIL, AUTH_PASSWORD, APP_URL } = process.env;
 
 const mailTransporter = nodemailer.createTransport({
-  service: "Yahoo", // email service provider
+  service: "Gmail", // email service provider
   auth: {
     user: AUTH_EMAIL, //your email username/address
     pass: AUTH_PASSWORD, //use app password created on your emaol account
