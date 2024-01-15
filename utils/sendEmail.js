@@ -84,7 +84,7 @@ export const sendResetPasswordLink = async (user, res) => {
     <h4>Hello ${lastName},</h4>
     <p>
      <h3 style="background-color: lightgrey; padding: 10px;border-radius: 10px"> Password Reset Link. Please click the link below to reset your password </h3>
-    <p style="font-size:18px;"><b> The link expires in 20 minutes</b></p>
+    <p style="font-size:18px;"><b> The link expires in 30 minutes</b></p>
     <br>
     <a href=${link} style="padding:14px; border-radius:5px; color:#fff; text-decoration:none; background-color:crimson"> Reset Password</a>
     </p>
@@ -105,7 +105,7 @@ export const sendResetPasswordLink = async (user, res) => {
       email: email,
       token: hashedToken,
       createdAt: Date.now(),
-      expiresAt: Date.now() + 1200000, //milli seconds = 20 minutes
+      expiresAt: Date.now() + 1800000, //milli seconds = 30 minutes
     });
     //  the the verfication model is successful then proceed to send the mail otherwise catch something that went wrong
     if (resetPasswordEmail) {
