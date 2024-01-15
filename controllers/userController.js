@@ -152,9 +152,12 @@ export const changePassword = async (req, res) => {
     // hash the password
     const hashedpassword = await hashString(password);
     // update only the user password field in database
-    const user = await Users.findByIdAndUpdate(userId, {
-      password: hashedpassword,
-    });
+    const user = await Users.findByIdAndUpdate(
+      { userId },
+      {
+        password: hashedpassword,
+      }
+    );
 
     // delete the user record from passwordReset model
 
