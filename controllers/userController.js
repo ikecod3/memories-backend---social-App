@@ -153,7 +153,7 @@ export const changePassword = async (req, res) => {
     const hashedpassword = await hashString(password);
     // update only the user password field in database
     const user = await Users.findByIdAndUpdate(
-      { _id: userId },
+      { userId },
       { password: hashedpassword }
     );
 
