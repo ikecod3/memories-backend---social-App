@@ -97,7 +97,7 @@ export const resetPassword = async (req, res) => {
 
   try {
     // find record
-    const user = await Users.findById(userId);
+    const user = await Users.findById({ _id: userId });
 
     if (!user) {
       const message = "Invalid password or reset link. Try again";
@@ -140,7 +140,7 @@ export const resetPassword = async (req, res) => {
 export const changePassword = async (req, res) => {
   try {
     // when a user submit a form -- it comes with a some data userId and password
-    // console.log(req.body);
+
     const { userId, password1, password2 } = req.body;
 
     if (!userId || !password1 || !password2) {
@@ -159,12 +159,9 @@ export const changePassword = async (req, res) => {
     // hash the password
     const hashedpassword = await hashString(password);
     // update only the user password field in database
-    const user = await Users.findOneAndUpdate(
-      { _id: userId },
-      {
-        password: hashedpassword,
-      }
-    );
+    const user = await Users.findByIdAndUpdate(userId, {
+      password: hashedpassword,
+    });
 
     // delete the user record from passwordReset model
 

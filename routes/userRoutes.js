@@ -26,8 +26,8 @@ router.get("/verified", (req, res) => {
   // const status = req.query.status;
   // const message = req.query.message;
   const title = "Email Verification";
-  const { status, message, type, userId } = req.query;
-  res.render("index", { status, message, title, type, userId });
+  const { status, message, type, userId, id } = req.query;
+  res.render("index", { status, message, title, type, userId, id });
 });
 
 /* ******************************************
@@ -67,14 +67,10 @@ router.get("/reset-password/:userId/:token", resetPassword); //find users record
 router.post("/reset-password", changePassword);
 
 router.get("/resetpassword", (req, res) => {
-  //   const status = req.query.status;
-  //   const message = req.query.message;
-  //   const type = req.query.type;
-  //   const userId = req.query.id;
-  const { status, message, type, userId } = req.query;
+  const { status, message, type, id, userId } = req.query;
   const title = "Reset Password";
 
-  res.render("index", { status, message, title, type, userId });
+  res.render("index", { status, message, title, type, id, userId });
 });
 
 export default router;
