@@ -101,8 +101,8 @@
           id="password1"
           autocomplete="off"
           placeholder="New Password"
-          pattern=".{6,}"
-          title="Password must be at least 6 characters"
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{6,}$"
+          title="Password must be Strong and at least 6 characters"
           required
         />
         <input
@@ -112,8 +112,8 @@
           id="password2"
           autocomplete="off"
           placeholder="Confirm password"
-          pattern=".{6,}"
-          title="Password must be at least 6 characters"
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{6,}$"
+          title="Password must be Stong and at least 6 characters"
           required
         />
         <button
