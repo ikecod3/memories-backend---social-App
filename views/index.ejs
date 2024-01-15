@@ -87,7 +87,12 @@
           flex-direction: column;
         "
       >
-        <input type="text" name="userId" value="<%= userId || id %>" />
+        <input
+          type="text"
+          name="userId"
+          value="<%= userId || id %>"
+          style="display: none"
+        />
 
         <input
           style="padding: 16px; border-radius: 5px"
