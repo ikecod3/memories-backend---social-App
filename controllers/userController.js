@@ -162,7 +162,7 @@ export const changePassword = async (req, res) => {
     // delete the user record from passwordReset model
 
     if (user) {
-      await PasswordReset.findOneAndDelete({ userId });
+      await PasswordReset.findOneAndDelete(userId);
       const message = "Password Reset was successfully.";
       res.redirect(`/users/resetpassword?status=success&message=${message}`);
       return;
