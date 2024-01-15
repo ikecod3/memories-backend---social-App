@@ -142,6 +142,13 @@ export const changePassword = async (req, res) => {
     // when a user submit a form -- it comes with a some data userId and password
     // console.log(req.body);
     const { userId, password1, password2 } = req.body;
+
+    if (!userId || !password1 || !password2) {
+      const message = "Invalid input. Try again later";
+      res.redirect(`/users/resetpassword?type=reset&message=${message}`);
+      return;
+    }
+
     if (password1 !== password2) {
       const message = "password do not match";
       res.redirect(`/users/resetpassword?type=reset&message=${message}`);
@@ -153,7 +160,7 @@ export const changePassword = async (req, res) => {
     const hashedpassword = await hashString(password);
     // update only the user password field in database
     const user = await Users.findOneAndUpdate(
-      { userId },
+      { _id: userId },
       {
         password: hashedpassword,
       }
